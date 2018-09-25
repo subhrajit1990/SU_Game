@@ -1,0 +1,466 @@
+@import url("https://fonts.googleapis.com/css?family=Monoton");
+@import url("https://fonts.googleapis.com/css?family=Bree+Serif");
+
+@keyframes shake {
+  0%   { transform: rotate(0deg); }
+  20%   { transform: rotate(5deg); }
+  40%   { transform: rotate(-5deg); }
+  60%   { transform: rotate(5deg); }
+  80%   { transform: rotate(-5deg); }
+  100% { transform: rotate(0deg); }
+}
+
+@keyframes pop-in {
+  0%  { 
+    transform: scale(.5, .5);
+    opacity: 0; 
+  }
+  40% { opacity: 1; }
+  65% { transform: scale(1.1, 1.1); }
+  100% { transform: scale(1, 1); }
+}
+
+@keyframes pop-away {
+  0%   {  transform: scale(1, 1) translate(0,0); }
+  40% { transform: scale(1.1, 1.1); }
+  65% { opacity: 1; }
+  
+  99% {  transform: scale(.5, .5);
+    opacity: 0; }
+  
+  100%{ transform: translate(-10000em,-10000em); }
+}
+
+html {
+  box-sizing: border-box;
+}
+
+*, *:before, *:after {
+  box-sizing: inherit;
+}
+
+html, body{
+  height: 100%;
+}
+
+body{
+  font-family: 'Bree Serif', serif;
+}
+
+.center-child{
+  background-color: #1c1b1a;
+ background-image: linear-gradient(90deg, transparent 50%, #333 50%);
+background-size: 5px 5px;
+
+  background-repeat: repeat;
+  width: 100%;
+  height: 100%;
+
+}
+
+body::after{
+  color: #ccc;
+  width: 100%;
+  height: 100%;
+  content: '';
+  position: absolute;
+  left: 0;
+  top: 0;
+  opacity: .9;
+  pointer-events: none;
+}
+
+.memory-app{
+  position: relative;
+}
+
+.center-child{
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  height: 100%;
+}
+
+.homescreen{
+  position: fixed;
+  left: 0;
+  top: 0;
+  right: 0;
+  bottom: 0;
+  display: flex;
+  flex-wrap: wrap;
+  align-items: center;
+  justify-content: center;
+  
+  z-index: 4;
+}
+
+.homescreenVisible{
+ animation-name: pop-in;
+ animation-duration: .75s;
+  animation-fill-mode: forwards;
+}
+.homescreenHidden{
+  //display: none;
+ animation-name: pop-away;
+ animation-duration: .75s;
+ animation-fill-mode: forwards;
+}
+
+.homescreenBox{
+  width: 90%;
+  background-color: red;
+  background: linear-gradient(to bottom, rgba(255,51,0,1) 0%,rgba(153,0,0,1) 100%);
+  padding: 20px;
+  text-align: center;
+  border-radius: 30em;
+  border: 6px solid orange;
+}
+
+.homescreenTitle{
+  font-family: 'Monoton', cursive;
+   font-size: 8vw;
+  display: block;
+  margin: 0;
+  color: orange;
+  line-height: 8vw;
+}
+
+.homescreenStats{
+  text-transform: capitalize;
+  font-size: 3vw;
+  color: #fff;
+  margin-top: 120px;
+}
+
+.homescreenNumber{
+  color: #ffcc00;
+}
+
+.homescreenShuffle-button{
+  font-size: 5vw;
+  border-radius: 10em;
+  border: 0;
+  text-transform: uppercase;
+  border: 2px solid white;
+  color: orange;
+  background-color: transparent;
+  background: linear-gradient(to bottom, rgba(255,51,0,1) 0%,rgba(153,0,0,1) 100%);
+  //width: 50%;
+  outline: 0;
+  transition: all .25s;
+  transition-timing-function: ease-out;
+  padding-left: 7vw;
+  padding-right: 7vw;
+  
+  &:hover{
+    background: #990000;
+    letter-spacing: .1em;
+    //box-shadow: 0px 0px 5vw #ffcc00;
+    border-color: orange;
+  }
+}
+
+
+.cards{
+  display: flex;
+  flex-directon: row;
+  flex-wrap: wrap;
+   align-items: center;
+  justify-content: center;
+}
+
+.card{
+  width: 150px;
+  height: 225px;
+  text-align: center;
+  
+  transition: all .2s;
+  
+  perspective: 800;
+  margin-left: 20px;
+  margin-bottom: 20px;
+}
+
+.card--removed{
+  animation-name: shake;
+ animation-duration: .3s;
+}
+
+.card--selected{
+  //transform: rotate(20deg);
+}
+
+.card--selected .cardInner,
+.card--removed .cardInner{
+  transform: rotatey(-180deg);
+  
+}
+
+.card--unselected .cardFront{
+  cursor: pointer;
+  transition: box-shadow .25s;
+  
+  &:hover{
+    box-shadow: 0px 0px 20px #ffcc00;
+  }
+  
+  &:active{
+    //transform: scale(.97);
+  }
+}
+
+.cardInner{
+  //background-color: white;
+  width: 100%;
+  height: 100%;
+  transform-style: preserve-3d;
+  transition: all .5s;
+}
+
+.cardFace{
+ // backface-visibility: hidden ;
+  width: 100%;
+  height: 100%;
+  background-color: pink;
+  //border: 2px solid transparent;
+  position: absolute;
+  border-radius: 5%;
+  backface-visibility: hidden ;
+  
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  
+}
+
+.cardFront{
+  /*background: repeating-linear-gradient(
+    45deg,
+    #606dbc,
+    #606dbc 10px,
+    #465298 10px,
+    #465298 20px
+  );*/
+  overflow: hidden;
+  
+  z-index: 1;
+  
+  &::before{
+    background: repeating-linear-gradient(
+      310deg,
+      black,
+      black 10px,
+      white 10px,
+      white 20px
+    );
+    width: 100%;
+    height: 100%;
+    opacity: .1;
+    content: '';
+   }
+}
+
+.cardBack{
+
+  z-index: 2;
+  transform: rotatey(-180deg);
+}
+
+.cardBack::before{
+  content: "";
+  font-size: 10vw;
+  display: block;
+  //margin-top: -1vw;
+}
+
+.cardBack::after{
+  content: "";
+  font-size: 3vw;
+  color: #fff;
+  display: block;
+  //margin-top: -1vw;
+}
+
+
+
+
+/* ..... */
+
+.wrapper {  
+  width: 400px;
+  height: 300px;
+  margin: auto;
+  perspective: 800px;
+  perspective-origin: 10% -10%;
+}
+
+.bg {
+  width: 100%;
+  height: 100%;
+  position: relative;
+  background: #53777A;
+  border-radius: 5px;
+  transform: rotateY(-10deg);
+  box-shadow: 20px -5px 30px rgba(0, 0, 0, 0.4);
+}
+
+.content {
+  position: absolute;
+  right: -40px;
+  top: 20px;
+  width: 350px;
+  height: 300px;
+  background: #dd6e58;
+  border-radius: 50%;
+  text-align: center;
+  transform: perspective(800px) translateZ(20px);
+  box-shadow: 10px -5px 20px rgba(0, 0, 0, 0.2);
+}
+.content p {
+  position: relative;
+  margin: auto;
+  top: 30%;
+  width: 60%;
+}
+
+div.btn-wrapper {
+  position: absolute;
+  top: 50px;
+  left: -40px;
+}
+
+div.cube {
+  height: 90px;
+  width: 180px;
+  transform: rotateY(15deg);
+  position: relative;
+  transform-style: preserve-3d;
+  transform-origin: 50% 50%;
+  font-size: 1.5em;
+}
+div.cube .msg {
+  position: absolute;
+}
+div.cube .success {
+  background: #5faf62;
+  display: none;
+}
+div.cube .fail {
+  backgrond: #C02942;
+  display: block;
+}
+div.cube.show-success .back {
+  background: #5faf62;
+}
+div.cube.show-success .success {
+  display: block;
+}
+div.cube.show-success .fail {
+  display: none;
+}
+
+.cube-ani {
+  animation: press .5s ease, spin .35s ease .5s, show-top 1.5s ease .85s;
+}
+
+.spin {
+  animation: spin-up 1s ease-out 0s 1;
+}
+
+.face {
+  position: absolute;
+  height: 90px;
+  width: 90px;
+  backface-visibility: true;
+  background: #d5482e;
+}
+
+.face.front {
+  height: 90px;
+  width: 180px !important;
+  background: #D95B43;
+  transform: translateZ(45px);
+}
+
+.face.back {
+  height: 90px;
+  width: 180px !important;
+  background: #C02942;
+  transform: rotateX(-180deg) translateZ(45px);
+}
+
+.face.text {
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.right {
+  transform: rotateY(90deg) translateZ(135px);
+}
+
+.left {
+  transform: rotateY(-90deg) translateZ(45px);
+}
+
+.top {
+  width: 180px;
+  height: 90px;
+  background: #dc6650;
+  transform: rotateX(90deg) translateZ(45px);
+}
+
+.bottom {
+  width: 180px;
+  height: 90px;
+  transform: rotateX(-90deg) translateZ(45px);
+}
+
+@keyframes press {
+  0% {
+    transform: rotateY(15deg) translateZ(0px);
+  }
+  50% {
+    transform: rotateY(15deg) translateZ(-25px);
+  }
+  100% {
+    transform: rotateY(15deg) translateZ(0px);
+  }
+}
+@keyframes spin {
+  from {
+    transform: rotateY(15deg) rotateX(0deg);
+  }
+  to {
+    transform: rotateY(15deg) rotateX(360deg);
+  }
+}
+@keyframes show-top {
+  0% {
+    transform: rotateY(15deg) rotateX(0deg);
+  }
+  20% {
+    transform: rotateY(15deg) rotateX(-190deg);
+  }
+  25% {
+    transform: rotateY(15deg) rotateX(-180deg);
+  }
+  80% {
+    transform: rotateY(15deg) rotateX(-180deg);
+  }
+  100% {
+    transform: rotateY(15deg) rotateX(0deg);
+  }
+}
+@keyframes spin-up {
+  0% {
+    transform: translateY(70px) rotateY(0deg) scale3d(0, 0, 0);
+  }
+  70% {
+    transform: translateY(-20px) rotateY(1024deg) scale3d(1, 1, 1);
+  }
+  100% {
+    transform: translateY(0px) rotateY(1099deg) scale3d(1, 1, 1);
+  }
+}
