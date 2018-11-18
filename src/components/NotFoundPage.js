@@ -2,7 +2,7 @@
 
 import React from 'react';
 
-export class NotFoundPage extends React.Component {
+export default class NotFoundPage extends React.Component {
   render() {
     return (
 		<div id="pageNotFound" className="container-fluid jumbotron text-center">
