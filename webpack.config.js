@@ -27,6 +27,7 @@ module.exports = {
   module: {
  rules:[{
       test: path.join(__dirname, 'src'),
+ exclude: /node_modules/,
       loader: 'babel-loader',
       options: {
        
@@ -52,7 +53,7 @@ module.exports = {
    ]
    },
 //lets you precisely control what bundle information gets displayed
-  devServer: {
+  /*devServer: {
     inline: true,
     port: 3333,
     contentBase: "src/static/",
@@ -64,7 +65,7 @@ module.exports = {
      new webpack.DefinePlugin({
       'process.env.NODE_ENV': JSON.stringify(process.env.NODE_ENV)
     })
-  ],
+  ], */
   // list of additional plugins
   /* Advanced configuration (click to show) */
 }
