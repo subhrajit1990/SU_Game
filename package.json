@@ -6,7 +6,13 @@
   "scripts": {
     "prestart": "npm install",
     "start": "http-server -a localhost -p 8080 -c-1"
-  },
+  },"repository": {
+    "type": "git",
+    "url": "git+https://github.com/subhrajit1990/SU_Game"
+  },"engines": {
+  "node": "10.5.0",
+  "npm": "6.4.1"
+},
   "author": "subhrajit.sahu",
   "license": "ISC",
   "dependencies": {
