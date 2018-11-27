@@ -4,8 +4,8 @@
   "description": "Memory Based Game",
   "main": "index.js",
   "scripts": {
-	"prestart": "npm install", 
-	"start": "http-server -a localhost -p 3333 -c-1"
+    "prestart": "npm install",
+    "start": "http-server -a localhost -p 3333 -c-1"
   },
   "author": "subhrajit.sahu",
   "license": "ISC",
