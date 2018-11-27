@@ -2,11 +2,11 @@
   "name": "SU_Game",
   "version": "1.0.0",
   "description": "Memory Based Game",
-  "main": "app-client.js",
+  "main": "./src/app-client.js",
   "scripts": {
     "webpack": "webpack-p",
     "dev": "webpack-dev-server",
-   "start": "node src/server.js",
+   "start": "node ./src/server.js",
 "postinstall": "webpack -p",
     "test": "echo \"Error: no test specified\" && exit 1"
   },
