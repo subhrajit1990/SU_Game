@@ -6,7 +6,7 @@ const webpack = require('webpack');
 const path = require('path');
 
 module.exports = {
-  mode: "production", // "production" | "development" | "none"
+  mode: "development", // "production" | "development" | "none"
   // Chosen mode tells webpack to use its built-in optimizations accordingly.
   entry: path.join(__dirname, 'src', 'app-client.js'),
  
