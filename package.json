@@ -4,15 +4,19 @@
   "description": "Memory Based Game",
   "main": "index.js",
   "scripts": {
-    "prestart": "npm install",
-    "start": "http-server -a localhost -p 8080 -c-1"
-  },"repository": {
+    "dev": "webpack-dev-server --progress --inline --colors --hot --config ./webpack.config.js",
+    "postinstall": "NODE_ENV='production' webpack -p",
+    "start": "node server.js",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
     "type": "git",
     "url": "git+https://github.com/subhrajit1990/SU_Game"
-  },"engines": {
-  "node": "10.5.0",
-  "npm": "6.4.1"
-},
+  },
+  "engines": {
+    "node": "10.5.0",
+    "npm": "6.4.1"
+  },
   "author": "subhrajit.sahu",
   "license": "ISC",
   "dependencies": {
@@ -26,7 +30,8 @@
     "react": "^16.4.1",
     "react-dom": "^16.4.1",
     "react-router": "^4.3.1",
-    "react-router-dom": "^4.3.1"
+    "react-router-dom": "^4.3.1",
+ "webpack-dev-server": "^3.1.10"
   },
   "devDependencies": {
     "babel-core": "^6.26.3",
