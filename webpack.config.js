@@ -54,7 +54,7 @@ module.exports = {
 //lets you precisely control what bundle information gets displayed
   devServer: {
     inline: true,
-    port: 3333,
+    port: 8080,
     contentBase: "src/static/",
     historyApiFallback: {
       index: '/index-static.html'
